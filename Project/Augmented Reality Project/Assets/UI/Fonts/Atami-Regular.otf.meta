@@ -1,0 +1,26 @@
+fileFormatVersion: 2
+guid: 6a556dc75f3d93444bef637465675304
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Atami
+  fontNames:
+  - Atami
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: c1e199525fb047043a10a1073b928bdf, type: 3}
+  - {fileID: 12800000, guid: d676ddd4d3c414f47a6ba1b40c36ef6e, type: 3}
+  - {fileID: 12800000, guid: 7002f7c6543e92249af7b8954f89e9da, type: 3}
+  - {fileID: 12800000, guid: 01e5cb8842c1afe41b0da6692b565b20, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

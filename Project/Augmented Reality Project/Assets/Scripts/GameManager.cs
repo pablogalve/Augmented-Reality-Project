@@ -24,12 +24,15 @@ public class GameManager : MonoBehaviour
 
     void NextRound(){
         int maxEnemies = System.Convert.ToInt32(System.Math.Floor(currEnemies));
-        for(int i = 0; i < maxEnemies; i++)
+        for(int i = 0; i < maxEnemies; i++){
+            StartCoroutine(WaitSeconds());
             SpawnEnemy();
+        }            
     }
 
     void SpawnEnemy(){
         Instantiate(enemies[GetRandomEnemy()], GetRandomSpawnPos(), Quaternion.identity);
+        enemiesLeft++;
     }
 
     int GetRandomEnemy(){
@@ -37,10 +40,22 @@ public class GameManager : MonoBehaviour
     }
 
     Vector3 GetRandomSpawnPos(){
-        float x = Random.Range((float)transform.position.x - 1.0f, (float)transform.position.x + 1.0f);
-        float y = Random.Range((float)transform.position.y - 1.0f, (float)transform.position.y + 1.0f);
-        float z = Random.Range((float)transform.position.z - 1.0f, (float)transform.position.z + 1.0f);
+        float x = Random.Range((float)transform.position.x - 0.3f, (float)transform.position.x + 0.3f);
+        float y = Random.Range((float)transform.position.y - 0.3f, (float)transform.position.y + 0.3f);
+        float z = Random.Range((float)transform.position.z - 0.3f, (float)transform.position.z + 0.3f);
 
         return new Vector3(x,y,z);
+    }
+
+    IEnumerator WaitSeconds()
+    {
+        //Print the time of when the function is first called.
+        Debug.Log("Started Coroutine at timestamp : " + Time.time);
+
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        yield return new WaitForSeconds(5);
+
+        //After we have waited 5 seconds print the time again.
+        Debug.Log("Finished Coroutine at timestamp : " + Time.time);
     }
 }
