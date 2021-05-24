@@ -17,9 +17,8 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Move our position a step closer to the target.
-        float step = speed * Time.deltaTime; // calculate distance to move
-        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, step);
+        if(transform.position.z > 0.3f && Vector3.Distance(player.transform.position, transform.position) > 0.5f)
+            transform.position -= Vector3.forward * speed * Time.deltaTime;
     }
 
     float GetRandomSpeedMultiplier(){

@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameObject[] enemies;
-    public GameObject spawnArea;
+    public GameObject[] spawnPoints;
     public int round = 1;
     public float enemiesToSpawn = 4.0f;
     private float enemiesToSpawnIncrement = 0.2f;
@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     }
 
     void SpawnEnemy(){
-        Instantiate(enemies[GetRandomEnemy()], GetRandomSpawnPos(), Quaternion.identity);
+        Instantiate(enemies[GetRandomEnemy()], spawnPoints[GetRandomSpawnPos()].transform.position, Quaternion.identity);
         currEnemies++;
     }
 
@@ -42,11 +42,7 @@ public class GameManager : MonoBehaviour
         return Random.Range(0, enemies.Length);
     }
 
-    Vector3 GetRandomSpawnPos(){
-        float x = Random.Range((float)spawnArea.transform.position.x - 0.0f, (float)spawnArea.transform.position.x + 0.0f);
-        float y = Random.Range((float)spawnArea.transform.position.y - 0.0f, (float)spawnArea.transform.position.y + 0.0f);
-        float z = Random.Range((float)spawnArea.transform.position.z - 0.0f, (float)spawnArea.transform.position.z + 0.0f);
-
-        return new Vector3(x,y,z);
+    int GetRandomSpawnPos(){
+        return Random.Range(0, spawnPoints.Length);
     }
 }
