@@ -30,8 +30,6 @@ public class GunController : MonoBehaviour
             instantiatedProjectile.velocity = transform.TransformDirection(new Vector3(0, 0, speed));
 
             //Change the gun used
-            Debug.Log(" ---------------------- LENGTH: " + bulletSpawnPoints.Length);
-            Debug.Log(" ---------------------- gunToUse: " + gunToUse);
             if(gunToUse < bulletSpawnPoints.Length - 1)
                 gunToUse++;
             else
