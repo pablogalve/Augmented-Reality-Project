@@ -97,6 +97,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b2fa4d5561efc5478b586a55d0ccae3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectile: {fileID: 265619865221376680, guid: dfc58353499f79749873b9dc3c333a17,
+    type: 3}
+  speed: 0.3
+  maxDistanceToAttack: 0.5
+  fireRate: 2
 --- !u!114 &4938610862106534357
 MonoBehaviour:
   m_ObjectHideFlags: 0

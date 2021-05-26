@@ -5,6 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - Bullet
+  - SpaceShip
+  - EnemyBullet
+  - FuelImage
+  - Joystick_Circle
+  - Joystick_OuterCircle
+  - spawnPoint
+  - Fuel
   layers:
   - Default
   - TransparentFX

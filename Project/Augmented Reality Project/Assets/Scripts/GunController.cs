@@ -5,8 +5,9 @@ using UnityEngine;
 public class GunController : MonoBehaviour
 {
     public GameObject[] bulletSpawnPoints;
-    public Rigidbody projectile;
-    public float speed = 0.3f;
+    public GameObject projectile;
+    public float speed = 0.0f;
+    public float duration = 5.0f;
 
     private int gunToUse = 0;
 
@@ -21,13 +22,13 @@ public class GunController : MonoBehaviour
     {
         if(Input.GetButtonDown("Fire1")){
             //Create the bullet
-            Rigidbody instantiatedProjectile = Instantiate(projectile,
+            GameObject instantiatedProjectile = Instantiate(projectile,
                                                             bulletSpawnPoints[gunToUse].transform.position,
-                                                            bulletSpawnPoints[gunToUse].transform.rotation) 
-                                                            as Rigidbody;
+                                                            bulletSpawnPoints[gunToUse].transform.rotation);
 
             //Make the bullet move
-            instantiatedProjectile.velocity = transform.TransformDirection(new Vector3(0, 0, speed));
+            Bullet bullet = instantiatedProjectile.GetComponent<Bullet>();
+            bullet.SetPlayerBullet(speed, duration, new Vector3(0, 0, 1));
 
             //Change the gun used
             if(gunToUse < bulletSpawnPoints.Length - 1)

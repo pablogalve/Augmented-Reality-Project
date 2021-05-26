@@ -31,7 +31,7 @@ public class EnemyHealth : MonoBehaviour
         if (other.gameObject.CompareTag("Bullet"))
         {
             Destroy(other.gameObject); //Destroy bullet
-            health -= Bullet.damage;
+            health -= Bullet.playerDamage;
         }
     }
 
