@@ -24,7 +24,7 @@ Then your spaceship and the playing environment should appear and enemy ufos wil
 
 ## Device on which the prototype has been tested
 
-- Samsung A202F
+- Samsung SM-A202F
 - Huawei P Smart
 - Samsung Galazy Tab A9
 
