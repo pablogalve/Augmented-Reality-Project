@@ -2,7 +2,7 @@
  
 Space Survival is a small AR game made with Unity and Vuforia.
 
-The objective of the game is to shoot and destroy ufos while avoiding colliding with asteroids.
+The objective of the game is to shoot and destroy ufos while avoiding colliding with asteroids. You will have to try to survive as many rounds as possible without being destroyed.
 
 ## Game Captures
 
