@@ -17,11 +17,16 @@ After starting the game from the main menu, focus the first marker with your mob
 
 Then your spaceship and the playing environment should appear and enemy ufos will start attacking you.
 
-
 ## Game Controls
 
 - Joystick: Move your spaceship left right up and down.
 - Shoot Button: press to shoot bullets.
+
+## Device on which the prototype has been tested
+
+- Samsung A202F
+- Huawei P Smart
+- Samsung Galazy Tab A9
 
 ## Team Members
 
