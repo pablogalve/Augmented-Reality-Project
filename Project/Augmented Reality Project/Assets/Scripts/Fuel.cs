@@ -35,15 +35,13 @@ public class Fuel : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.tag);
-
         if (other.gameObject.CompareTag("EnemyBullet"))
         {
-            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAA");
-            //Destroy(other.gameObject); //Destroy bullet
-            //fuel -= Bullet.enemyDamage;
+            Destroy(other.gameObject); //Destroy bullet
+            fuel -= Bullet.enemyDamage;
+
         }
-        
+
         if (other.gameObject.CompareTag("Fuel"))
         {
             Destroy(other.gameObject); //Destroy fuel
