@@ -5,11 +5,11 @@ Space Survival is a small AR game made with Unity and Vuforia.
 The objective of the game is to shoot and destroy ufos while avoiding colliding with asteroids. You will have to try to survive as many rounds as possible without being destroyed.
 
 ## Game Captures
-<img src="https://github.com/pablogalve/Augmented-Reality-Project/assets/gameplay_03.gif"  width="45%"></img>
-<img src="https://github.com/pablogalve/Augmented-Reality-Project/assets/menu_01.PNG"  width="45%"></img>
+<img src="https://github.com/pablogalve/Augmented-Reality-Project/blob/main/assets/gameplay_03.gif"  width="45%"></img>
+<img src="https://github.com/pablogalve/Augmented-Reality-Project/blob/main/assets/menu_01.PNG"  width="45%"></img>
 
-<img src="https://github.com/pablogalve/Augmented-Reality-Project/assets/selectShip_01.gif"  width="45%"></img>
-<img src="https://github.com/pablogalve/Augmented-Reality-Project/assets/gameplay_02.PNG"  width="45%"></img>
+<img src="https://github.com/pablogalve/Augmented-Reality-Project/blob/main/assets/selectShip_01.gif"  width="45%"></img>
+<img src="https://github.com/pablogalve/Augmented-Reality-Project/blob/main/assets/gameplay_02.PNG"  width="45%"></img>
 
 ## Install
 
