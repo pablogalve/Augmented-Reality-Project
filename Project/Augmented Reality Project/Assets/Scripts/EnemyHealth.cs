@@ -23,6 +23,9 @@ public class EnemyHealth : MonoBehaviour
 
         explosionTime = 1.0f;
 
+        if(gameObject.CompareTag("RotateShip"))
+            transform.Rotate(-90.0f, 0.0f, 0.0f, Space.Self);
+
         audioDeath = GameObject.Find("AudioEnemyDeath").GetComponent<AudioSource>();
         audioImpact = GameObject.Find("AudioEnemyImpact").GetComponent<AudioSource>();
 

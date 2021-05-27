@@ -20,6 +20,7 @@ TagManager:
   - GameManager
   - EnemyDeath
   - EnemyShoot
+  - RotateShip
   layers:
   - Default
   - TransparentFX
