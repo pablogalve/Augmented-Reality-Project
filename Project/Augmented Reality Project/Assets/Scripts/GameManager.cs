@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class GameManager : MonoBehaviour
@@ -13,19 +13,24 @@ public class GameManager : MonoBehaviour
     private float enemiesToSpawnIncrement = 0.2f;
     public float currEnemies = 0.0f;
 
+    private float waitBetweenSpawns = 5.0f;
+    private float waitBetweenSpawnsTimer = 0.0f;
+    private bool spawningEnemies = false;
+    private int enemiesToSpawnInCurrentRound;
+    private int enemiesSpawnedInCurrentRound;
+
     private float timer = 2.0f;
     private float roundstimer = 1.0f;
     private bool showRounds = false;
 
     public ParticleSystem confetti;
     public TextMeshProUGUI roundsText;
+    public TextMeshProUGUI dieText;
+    private float dieTextTimer = 10.0f;
 
     // Start is called before the first frame update
     void Start()
     {
-        confetti = confetti.GetComponent<ParticleSystem>();
-        roundsText = roundsText.GetComponent<TextMeshProUGUI>();
-        
         spawnPoints = GameObject.FindGameObjectsWithTag("spawnPoint");
 
         NextRound();
@@ -64,15 +69,25 @@ public class GameManager : MonoBehaviour
                 roundstimer = 1.0f;
             }
         }
+
+        if(spawningEnemies)
+            SpawnAllEnemies();
+
+        if(dieText.enabled){
+            dieTextTimer -= Time.deltaTime;
+            if(dieTextTimer <= 0.0f)
+                SceneManager.LoadScene("MainMenu");
+        }
     }
 
     void NextRound(){        
-        int maxEnemies = System.Convert.ToInt32(System.Math.Floor(enemiesToSpawn));
-        for(int i = 0; i < maxEnemies; i++){
-            SpawnEnemy();
-        }
+        enemiesSpawnedInCurrentRound = 0;
+        spawningEnemies = true;
+        waitBetweenSpawnsTimer = waitBetweenSpawns;
         confetti.Play();
-        round++;
+        round++;        
+        enemiesToSpawnInCurrentRound = System.Convert.ToInt32(System.Math.Floor(enemiesToSpawn));
+        currEnemies += enemiesToSpawnInCurrentRound;
         enemiesToSpawn *= 1.0f + enemiesToSpawnIncrement;
         roundsText.text = "ROUND " + (round - 1).ToString();
         showRounds = true;
@@ -80,8 +95,7 @@ public class GameManager : MonoBehaviour
     }
 
     void SpawnEnemy(){
-        Instantiate(enemies[GetRandomEnemy()], spawnPoints[GetRandomSpawnPos()].transform.position, Quaternion.identity);
-        currEnemies++;
+        Instantiate(enemies[GetRandomEnemy()], spawnPoints[GetRandomSpawnPos()].transform.position, Quaternion.identity);        
     }
 
     int GetRandomEnemy(){
@@ -90,5 +104,22 @@ public class GameManager : MonoBehaviour
 
     public static int GetRandomSpawnPos(){
         return Random.Range(0, spawnPoints.Length);
+    }
+
+    void SpawnAllEnemies(){
+        if(waitBetweenSpawnsTimer <= 0.0f)
+        {
+            SpawnEnemy();
+            enemiesSpawnedInCurrentRound++;
+            waitBetweenSpawnsTimer = waitBetweenSpawns;
+        }else{
+            waitBetweenSpawnsTimer -= Time.deltaTime;
+        }
+        if(enemiesSpawnedInCurrentRound >= enemiesToSpawnInCurrentRound)
+            spawningEnemies = false;
+    }
+
+    public void FinishGame(){
+        dieText.enabled = true;
     }
 }

@@ -16,6 +16,8 @@ TagManager:
   - Right
   - Top
   - Bottom
+  - Rock
+  - GameManager
   layers:
   - Default
   - TransparentFX

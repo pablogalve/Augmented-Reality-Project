@@ -7,8 +7,13 @@ public class PropController : MonoBehaviour
     public GameObject fuel;
     public GameObject[] rocks;
 
-    public float fuelTimer;
-    public float rockTimer;
+    public float fuelTimerMin = 15.0f;
+    public float fuelTimerMax = 30.0f;
+    public float rockTimerMin = 5.0f;
+    public float rockTimerMax = 20.0f;
+
+    private float fuelTimer;
+    private float rockTimer;
 
     // Start is called before the first frame update
     void Start()
@@ -20,14 +25,14 @@ public class PropController : MonoBehaviour
     void Update()
     {
         if(fuelTimer <= 0.0f){
-            fuelTimer = GetRandomTime(5.0f, 6.0f);
+            fuelTimer = GetRandomTime(fuelTimerMin, fuelTimerMax);
             SpawnFuel();
         }else{
             fuelTimer -= Time.deltaTime;
         }
 
         if(rockTimer <= 0.0f){
-            rockTimer = GetRandomTime(3.0f, 10.0f);
+            rockTimer = GetRandomTime(rockTimerMin, rockTimerMax);
             SpawnRock();
         }else{
             rockTimer -= Time.deltaTime;

@@ -9,16 +9,28 @@ public class Fuel : MonoBehaviour
     private Vector3 fuelVec;
     public float maxFuel = 100.0f;
     public float fuel = 100.0f;
-    public float healFuel = 50.0f;
+    public float healFuel = 50.0f;   
+
+    private bool isMoving = true;  
+    private Vector3 lastPos;
+    public float fuelSpendSpeed = 2.0f;
+
+    private bool isDead = false;
+
+    private GameObject gameManagerObj;
+    private GameManager gameManagerScript;
 
     // Start is called before the first frame update
     void Start()
     {
-        fuel = maxFuel;
+        fuel = maxFuel;        
         
         GameObject imageObject = GameObject.FindGameObjectWithTag("FuelImage");
- 
-        if(imageObject != null)
+
+        gameManagerObj = GameObject.FindGameObjectWithTag("GameManager");
+        gameManagerScript = gameManagerObj.GetComponent<GameManager>();
+
+        if (imageObject != null)
         {
             fuelBarImage = imageObject.GetComponent<Image>();
         }
@@ -28,29 +40,60 @@ public class Fuel : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {       
-        fuelVec.x = fuel * 0.01f;
-        fuelBarImage.transform.localScale = fuelVec;
+    {   
+        if(!isDead){
+            fuelVec.x = fuel * 0.01f;
+            fuelBarImage.transform.localScale = fuelVec;
+
+            if(fuel <= 0) 
+                Die();
+
+            checkMovement();
+            if(isMoving)
+                UseFuel();
+        }
     }    
+
+    void Die(){
+        gameManagerScript.FinishGame();
+        isDead = true;
+    }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("EnemyBullet"))
-        {
-            Destroy(other.gameObject); //Destroy bullet
-            fuel -= Bullet.enemyDamage;
+        if(!isDead){
+            if (other.gameObject.CompareTag("EnemyBullet"))
+            {
+                Destroy(other.gameObject); //Destroy bullet
+                fuel -= Bullet.enemyDamage;
+            }
 
-        }
+            if (other.gameObject.CompareTag("Fuel"))
+            {
+                Destroy(other.gameObject); //Destroy fuel
 
-        if (other.gameObject.CompareTag("Fuel"))
-        {
-            Destroy(other.gameObject); //Destroy fuel
+                fuel += healFuel;
 
-            fuel += healFuel;
+                if (fuel > maxFuel)
+                    fuel = maxFuel;
+            }
 
-            if (fuel > maxFuel)
-                fuel = maxFuel;
+            if (other.gameObject.CompareTag("Rock"))
+            {
+                Destroy(other.gameObject); //Destroy rock
+                fuel -= 10.0f;
+            }
+        }        
+    }
 
-        }
+    void checkMovement(){
+        if(transform.position == lastPos)
+            isMoving = false;
+        else isMoving = true;
+        lastPos = transform.position;
+    }
+
+    void UseFuel(){
+        fuel -= fuelSpendSpeed * Time.deltaTime;
     }
 }
