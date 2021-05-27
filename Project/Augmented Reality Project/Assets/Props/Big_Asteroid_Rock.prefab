@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7023197391466461874}
   - component: {fileID: 3725868863942978673}
   - component: {fileID: 2509366546327265996}
+  - component: {fileID: -3908824753599456937}
   m_Layer: 0
   m_Name: Big_Asteroid_Rock
   m_TagString: Rock
@@ -111,3 +112,16 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -884661629747058918, guid: 7481671f6ddf36149a846784bcf6b9f2, type: 3}
+--- !u!114 &-3908824753599456937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453202627518055744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c909c4c59a3a184c8682169e56e5dd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2

@@ -13,11 +13,13 @@ public class EnemyAttack : MonoBehaviour
 
     public float fireRate = 2.0f;
     private float fireTimer = 2.0f;
+    public AudioSource audioShoot;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        audioShoot = GameObject.Find("AudioEnemyDeath").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -52,6 +54,7 @@ public class EnemyAttack : MonoBehaviour
                 //instantiatedProjectile.velocity = transform.TransformDirection(new Vector3(dir.x * speed, dir.y * speed, dir.z * speed));
 
                 fireTimer = fireRate;
+                audioShoot.Play();
             }
         }        
     }

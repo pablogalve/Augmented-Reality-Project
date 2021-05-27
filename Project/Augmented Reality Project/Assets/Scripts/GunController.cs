@@ -15,17 +15,22 @@ public class GunController : MonoBehaviour
     private Button shootButton;
     private bool shoot;
 
+    public AudioSource audioShoot;
+
     // Start is called before the first frame update
     void Start()
     {
         shootButton = GameObject.Find("ShootButton").GetComponent<Button>();
         shootButton.onClick.AddListener(OnShootButton);
+
+        audioShoot = GameObject.Find("AudioShoot").GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (shoot)
+        if (shoot && !GameManager.isDead)
         {
             //Create the bullet
             GameObject instantiatedProjectile = Instantiate(projectile,
@@ -43,6 +48,8 @@ public class GunController : MonoBehaviour
                 gunToUse = 0;
 
             shoot = false;
+
+            
         }
     }
 
@@ -53,5 +60,6 @@ public class GunController : MonoBehaviour
     void OnShootButton()
     {
         shoot = true;
+        audioShoot.Play();
     }
 }

@@ -18,6 +18,8 @@ TagManager:
   - Bottom
   - Rock
   - GameManager
+  - EnemyDeath
+  - EnemyShoot
   layers:
   - Default
   - TransparentFX

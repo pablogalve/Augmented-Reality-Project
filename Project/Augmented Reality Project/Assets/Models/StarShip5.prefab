@@ -106,7 +106,6 @@ GameObject:
   - component: {fileID: 2865323552544895792}
   - component: {fileID: 2486012195078214939}
   - component: {fileID: 8235962880086170204}
-  - component: {fileID: 2179481173898575653}
   m_Layer: 0
   m_Name: StarShip5
   m_TagString: Player
@@ -215,6 +214,7 @@ MonoBehaviour:
   maxFuel: 100
   fuel: 100
   healFuel: 50
+  fuelSpendSpeed: 2
 --- !u!54 &2865323552544895792
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -257,20 +257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bffcccb5d0a21748ae60fbdc2458936, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  joystick: {fileID: 0}
   moveSpeed: 5
---- !u!114 &2179481173898575653
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3491124086185040830}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f59294bdd9727a4abf299bcc2814c95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4732792557886640713
 GameObject:
   m_ObjectHideFlags: 0

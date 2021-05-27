@@ -8,7 +8,10 @@ public class EnemyHealth : MonoBehaviour
     public float health = 100.0f;
     private GameManager gameManagerScript;
     public ParticleSystem explosion;
+    public AudioSource audioDeath;
+    public AudioSource audioImpact;
 
+    private bool isAlreadyPlay = false;
 
     float explosionTime;
 
@@ -18,8 +21,11 @@ public class EnemyHealth : MonoBehaviour
         GameObject theGameManager = GameObject.Find("GameManager");
         gameManagerScript = theGameManager.GetComponent<GameManager>();
 
-        explosion = explosion.GetComponent<ParticleSystem>();
-        explosionTime = explosion.main.duration;
+        explosionTime = 2.0f;
+
+        audioDeath = GameObject.Find("AudioEnemyDeath").GetComponent<AudioSource>();
+        audioImpact = GameObject.Find("AudioEnemyImpact").GetComponent<AudioSource>();
+
 
         health = initialHealth + (initialHealth * gameManagerScript.round * 0.05f);
     }
@@ -27,32 +33,49 @@ public class EnemyHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (explosion.isPlaying)
-        {
-            explosionTime -= Time.deltaTime;
-            
-            if (explosionTime <= 0)
-            {
-                Destroy(gameObject);
-                gameManagerScript.currEnemies--;
+        if(explosion != null) {
 
-                explosion.Stop();
-                explosionTime = 2.0f;
+            if (isAlreadyPlay) {
+
+               explosionTime -= Time.deltaTime;
+               Debug.Log(explosionTime.ToString());
+
+               if (explosionTime <= 0.0f)
+               {
+                   gameManagerScript.currEnemies--;
+
+                   GameManager.score += 50;
+                   explosion.Stop();
+           
+                   Destroy(gameObject);
+               }
+
             }
+
+        }
+        else
+        {
+            gameManagerScript.currEnemies--;
+            GameManager.score += 50;
+            Destroy(gameObject);
         }
 
-        if (health <= 0.0f)
+        if (isAlreadyPlay == false && health <= 0.0f)
         {
             explosion.Play();
+            audioDeath.Play();
+            isAlreadyPlay = true;
         }
+        
     }
 
     void OnTriggerEnter(Collider other)
     {
-        /*if (other.gameObject.CompareTag("Bullet"))
+        if (other.gameObject.CompareTag("Bullet"))
         {
             Destroy(other.gameObject); //Destroy bullet
             health -= Bullet.playerDamage;
-        }*/
+            audioImpact.Play();
+        }
     }
 }

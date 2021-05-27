@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public int round = 0;
     public float enemiesToSpawn = 4.0f;
     private float enemiesToSpawnIncrement = 0.2f;
-    public float currEnemies = 0.0f;
+    public int currEnemies = 0;
 
     private float waitBetweenSpawns = 5.0f;
     private float waitBetweenSpawnsTimer = 0.0f;
@@ -26,57 +26,63 @@ public class GameManager : MonoBehaviour
     public ParticleSystem confetti;
     public TextMeshProUGUI roundsText;
     public TextMeshProUGUI dieText;
-    private float dieTextTimer = 10.0f;
+    private float dieTextTimer = 4.0f;
+    public static bool isDead = false;
+    public static int score = 0;
+
+    public AudioSource audioVictory;
+    public AudioSource audioDeath;
 
     // Start is called before the first frame update
     void Start()
     {
         spawnPoints = GameObject.FindGameObjectsWithTag("spawnPoint");
 
+        ResetGame();
         NextRound();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(currEnemies <= 0)
+        if(!isDead){ // !isDead
+            if(currEnemies <= 0)
             NextRound();        
 
-        if(Input.GetKeyDown(KeyCode.Space)) 
-        {
-            Debug.Log("Pressing Space");
-            NextRound();
-        }
-
-        if (confetti.isPlaying) 
-        {
-            timer -= Time.deltaTime;
-            
-            if (timer <= 0)
+            if(Input.GetKeyDown(KeyCode.Space)) 
             {
-                confetti.Stop();
-                timer = 2.0f;
+                Debug.Log("Pressing Space");
+                NextRound();
             }
-        }
 
-        if (showRounds) 
-        {
-            roundstimer -= Time.deltaTime;
-            if(roundstimer <= 0) 
+            if (confetti.isPlaying) 
             {
-                roundsText.enabled = false;
-                showRounds = false;
-                roundstimer = 1.0f;
+                timer -= Time.deltaTime;
+                
+                if (timer <= 0)
+                {
+                    confetti.Stop();
+                    timer = 2.0f;
+                }
             }
-        }
 
-        if(spawningEnemies)
-            SpawnAllEnemies();
+            if (showRounds) 
+            {
+                roundstimer -= Time.deltaTime;
+                if(roundstimer <= 0) 
+                {
+                    roundsText.enabled = false;
+                    showRounds = false;
+                    roundstimer = 1.0f;
+                }
+            }
 
-        if(dieText.enabled){
+            if(spawningEnemies)
+                SpawnAllEnemies();
+        }else{
             dieTextTimer -= Time.deltaTime;
             if(dieTextTimer <= 0.0f)
-                SceneManager.LoadScene("MainMenu");
+                SceneManager.LoadScene("MainMenu");        
         }
     }
 
@@ -87,11 +93,13 @@ public class GameManager : MonoBehaviour
         confetti.Play();
         round++;        
         enemiesToSpawnInCurrentRound = System.Convert.ToInt32(System.Math.Floor(enemiesToSpawn));
-        currEnemies += enemiesToSpawnInCurrentRound;
+        currEnemies += (int)enemiesToSpawnInCurrentRound;
         enemiesToSpawn *= 1.0f + enemiesToSpawnIncrement;
         roundsText.text = "ROUND " + (round - 1).ToString();
         showRounds = true;
         roundsText.enabled = true;
+
+        audioVictory.Play();
     }
 
     void SpawnEnemy(){
@@ -121,5 +129,17 @@ public class GameManager : MonoBehaviour
 
     public void FinishGame(){
         dieText.enabled = true;
+        isDead = true;
+
+        audioDeath.Play();
+    }
+
+    public void ResetGame(){
+        Debug.Log("-----------------------RESET GAME");
+        isDead = false;
+        round = 0;
+        enemiesToSpawn = 4.0f;
+        currEnemies = 0;
+        NextRound();
     }
 }

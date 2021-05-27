@@ -15,8 +15,6 @@ public class Fuel : MonoBehaviour
     private Vector3 lastPos;
     public float fuelSpendSpeed = 2.0f;
 
-    private bool isDead = false;
-
     private GameObject gameManagerObj;
     private GameManager gameManagerScript;
 
@@ -41,7 +39,7 @@ public class Fuel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        if(!isDead){
+        if(!GameManager.isDead){
             fuelVec.x = fuel * 0.01f;
             fuelBarImage.transform.localScale = fuelVec;
 
@@ -56,12 +54,12 @@ public class Fuel : MonoBehaviour
 
     void Die(){
         gameManagerScript.FinishGame();
-        isDead = true;
+        GameManager.isDead = true;
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if(!isDead){
+        if(!GameManager.isDead){
             if (other.gameObject.CompareTag("EnemyBullet"))
             {
                 Destroy(other.gameObject); //Destroy bullet

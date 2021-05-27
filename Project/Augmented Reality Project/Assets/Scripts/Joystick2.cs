@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Joystick2 : MonoBehaviour {
     
-    public Joystick joystick;
+    private Joystick joystick;
     private Rigidbody player;
 
     float horizontalMove = 0;
@@ -17,22 +17,20 @@ public class Joystick2 : MonoBehaviour {
         moveSpeed /= 4;
         joystick = FindObjectOfType<Joystick>();
         player = gameObject.GetComponent<Rigidbody>();
-
     }
     
     private void Update()
     {
+        if(!GameManager.isDead){
+            horizontalMove = joystick.Horizontal * moveSpeed;
+            verticalMove = joystick.Vertical * moveSpeed;
 
-        horizontalMove = joystick.Horizontal * moveSpeed;
-        verticalMove = joystick.Vertical * moveSpeed;
-
-        transform.position += new Vector3(horizontalMove, verticalMove, 0) * Time.deltaTime;
-
+            transform.position += new Vector3(horizontalMove, verticalMove, 0) * Time.deltaTime;
+        }
     }
 
     void OnTriggerEnter(Collider other)
     {
-
         if (other.gameObject.tag == "Left")
             gameObject.transform.position = new Vector3(0.9f, transform.position.y, transform.position.z);
         
@@ -44,8 +42,5 @@ public class Joystick2 : MonoBehaviour {
 
         if (other.gameObject.tag == "Bottom")
             gameObject.transform.position = new Vector3(transform.position.x, 0.4f, transform.position.z);
-
-
     }
-
 }
