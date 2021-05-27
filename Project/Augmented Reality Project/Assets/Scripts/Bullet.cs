@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
 
     private Vector3 direction;
     private float speed;
-    public float durationTimer;
+    private float durationTimer;
 
     //Rigidbody m_Rigidbody;
 
@@ -38,7 +38,10 @@ public class Bullet : MonoBehaviour
         durationTimer = _duration;
     }
 
-    public void SetEnemyBullet(){
-
+    public void SetEnemyBullet(float _speed, float _duration, Vector3 _direction)
+    {
+        direction = _direction;
+        speed = _speed;
+        durationTimer = _duration;
     }
 }

@@ -33,17 +33,26 @@ public class Fuel : MonoBehaviour
         fuelBarImage.transform.localScale = fuelVec;
     }    
 
-    void OnCollisionEnter(Collision other)
+    void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other.gameObject.tag);
+
         if (other.gameObject.CompareTag("EnemyBullet"))
         {
-            Destroy(other.gameObject); //Destroy bullet
-            fuel -= Bullet.enemyDamage;
+            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAA");
+            //Destroy(other.gameObject); //Destroy bullet
+            //fuel -= Bullet.enemyDamage;
         }
+        
         if (other.gameObject.CompareTag("Fuel"))
         {
-            Destroy(other.gameObject); //Destroy gasoil
+            Destroy(other.gameObject); //Destroy fuel
+
             fuel += healFuel;
+
+            if (fuel > maxFuel)
+                fuel = maxFuel;
+
         }
     }
 }

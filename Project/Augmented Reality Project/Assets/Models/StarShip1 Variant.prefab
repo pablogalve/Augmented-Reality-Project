@@ -45,9 +45,9 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!65 &1623949139490012102
-BoxCollider:
+  m_CollisionDetection: 3
+--- !u!64 &7700535255651117791
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -56,9 +56,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.1323488, y: 0.0333774, z: 0.073501274}
-  m_Center: {x: 0, y: -0.0019657523, z: 0}
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1905680394191632819, guid: e7bd9a624a75a724ca7caf7133c0844e, type: 3}
 --- !u!114 &380557439572967978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,6 +74,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxFuel: 100
   fuel: 100
+  healFuel: 50
 --- !u!114 &1063557716563096402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,7 +92,7 @@ MonoBehaviour:
   - {fileID: 875255855116940248}
   projectile: {fileID: 1771527390596032669, guid: 2c3d372a9ed128f4eb4962dccd5aab6a,
     type: 3}
-  speed: 0.3
+  speed: 3
   duration: 5
 --- !u!114 &3142534996870266706
 MonoBehaviour:

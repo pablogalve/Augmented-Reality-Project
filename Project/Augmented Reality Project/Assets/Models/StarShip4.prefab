@@ -76,6 +76,7 @@ GameObject:
   - component: {fileID: 6862360060975463620}
   - component: {fileID: 5296958492272868800}
   - component: {fileID: -8250008801512080423}
+  - component: {fileID: 4216093342089691155}
   m_Layer: 0
   m_Name: StarShip4
   m_TagString: Player
@@ -162,6 +163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxFuel: 100
   fuel: 100
+  healFuel: 50
 --- !u!114 &1460740864378269771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,7 +183,7 @@ MonoBehaviour:
   - {fileID: 4823196116799255866}
   projectile: {fileID: 1771527390596032669, guid: 2c3d372a9ed128f4eb4962dccd5aab6a,
     type: 3}
-  speed: 0.3
+  speed: 3
   duration: 5
 --- !u!65 &6862360060975463620
 BoxCollider:
@@ -225,7 +227,21 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
+--- !u!64 &4216093342089691155
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6228329011592505314}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1797981986966213842, guid: fff3d45e8e3eb7545bbb9898d66277a7, type: 3}
 --- !u!1 &6260461737238542695
 GameObject:
   m_ObjectHideFlags: 0

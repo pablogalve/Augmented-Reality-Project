@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: -6993882471977375733}
   - component: {fileID: -7958752022246447023}
   - component: {fileID: -7237540244846083813}
-  - component: {fileID: 2440992884780578819}
+  - component: {fileID: 8973676227304052134}
+  - component: {fileID: 431491475815610422}
   m_Layer: 0
   m_Name: en_ufo_01
   m_TagString: Untagged
@@ -96,9 +97,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b2fa4d5561efc5478b586a55d0ccae3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 265619865221376680, guid: dfc58353499f79749873b9dc3c333a17,
+  projectile: {fileID: 8718972930800940342, guid: a8649fc4c18f5054abcd8b1dc63e6315,
     type: 3}
-  speed: 0.3
+  speed: 3
   maxDistanceToAttack: 0.5
   fireRate: 2
 --- !u!114 &-7958752022246447023
@@ -127,17 +128,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac35514b165463e418f99ea8cf1a0bda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.2
---- !u!65 &2440992884780578819
-BoxCollider:
+  speed: 0.5
+--- !u!64 &8973676227304052134
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6538845059632799376}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 5384254299093679469, guid: 5f9b7ff49a16c99489f7a49de6e0fedf, type: 3}
+--- !u!54 &431491475815610422
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6538845059632799376}
   serializedVersion: 2
-  m_Size: {x: 6.0205345, y: 3.4613307, z: 6.3303647}
-  m_Center: {x: 0, y: 0.922336, z: 0}
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

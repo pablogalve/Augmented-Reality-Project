@@ -41,4 +41,15 @@ public class GunController : MonoBehaviour
     int GetRandomSpawnPos(){
         return Random.Range(0, bulletSpawnPoints.Length);
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(other.gameObject.tag);
+        if (other.gameObject.CompareTag("EnemyBullet"))
+        {
+            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAA");
+            Destroy(other.gameObject); //Destroy bullet
+            //fuel -= Bullet.enemyDamage;
+        }
+    }
 }

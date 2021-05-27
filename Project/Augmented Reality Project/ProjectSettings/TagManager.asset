@@ -12,6 +12,10 @@ TagManager:
   - Joystick_OuterCircle
   - spawnPoint
   - Fuel
+  - Left
+  - Right
+  - Top
+  - Bottom
   layers:
   - Default
   - TransparentFX
