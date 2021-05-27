@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public int round = 0;
     public float enemiesToSpawn = 4.0f;
     private float enemiesToSpawnIncrement = 0.2f;
-    public int currEnemies = 0;
+    public float currEnemies = 0.0f;
 
     private float waitBetweenSpawns = 5.0f;
     private float waitBetweenSpawnsTimer = 0.0f;
@@ -24,8 +24,13 @@ public class GameManager : MonoBehaviour
     private bool showRounds = false;
 
     public ParticleSystem confetti;
+
     public TextMeshProUGUI roundsText;
     public TextMeshProUGUI dieText;
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI finalRoundsText;
+    public TextMeshProUGUI finalScoreText;
+
     private float dieTextTimer = 4.0f;
     public static bool isDead = false;
     public static int score = 0;
@@ -38,14 +43,20 @@ public class GameManager : MonoBehaviour
     {
         spawnPoints = GameObject.FindGameObjectsWithTag("spawnPoint");
 
-        ResetGame();
+        dieText.enabled = false;
+        finalRoundsText.enabled = false;
+        finalScoreText.enabled = false;
+
         NextRound();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!isDead){ // !isDead
+
+        scoreText.text = "SCORE: " + score.ToString();
+
+        if (!isDead){ // !isDead
             if(currEnemies <= 0)
             NextRound();        
 
@@ -93,7 +104,7 @@ public class GameManager : MonoBehaviour
         confetti.Play();
         round++;        
         enemiesToSpawnInCurrentRound = System.Convert.ToInt32(System.Math.Floor(enemiesToSpawn));
-        currEnemies += (int)enemiesToSpawnInCurrentRound;
+        currEnemies += enemiesToSpawnInCurrentRound;
         enemiesToSpawn *= 1.0f + enemiesToSpawnIncrement;
         roundsText.text = "ROUND " + (round - 1).ToString();
         showRounds = true;
@@ -129,17 +140,12 @@ public class GameManager : MonoBehaviour
 
     public void FinishGame(){
         dieText.enabled = true;
+        finalScoreText.text = "TOTAL SCORE: " + score.ToString();
+        finalRoundsText.text = "TOTAL ROUND: " + (round - 1).ToString();
+        finalRoundsText.enabled = true;
+        finalScoreText.enabled = true;
         isDead = true;
 
         audioDeath.Play();
-    }
-
-    public void ResetGame(){
-        Debug.Log("-----------------------RESET GAME");
-        isDead = false;
-        round = 0;
-        enemiesToSpawn = 4.0f;
-        currEnemies = 0;
-        NextRound();
     }
 }

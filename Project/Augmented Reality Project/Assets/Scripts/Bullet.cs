@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public static float playerDamage = 50.0f;
+    public static float playerDamage = 80.0f;
     public static float enemyDamage = 10.0f;
 
     private Vector3 direction;

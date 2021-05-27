@@ -11,13 +11,15 @@ public class EnemyAttack : MonoBehaviour
     private bool isMoving = true;  
     private Vector3 lastPos;
 
-    public float fireRate = 2.0f;
-    private float fireTimer = 2.0f;
+    public float fireRate = 5.0f;
+    private float fireTimer = 5.0f;
     public AudioSource audioShoot;
+    private EnemyHealth enemyHealth;
 
     // Start is called before the first frame update
     void Start()
     {
+        enemyHealth = gameObject.GetComponent<EnemyHealth>();
         player = GameObject.FindGameObjectWithTag("Player");
         audioShoot = GameObject.Find("AudioEnemyDeath").GetComponent<AudioSource>();
     }
@@ -39,7 +41,7 @@ public class EnemyAttack : MonoBehaviour
         //Debug.Log("----------------------distance " + distanceToPlayer.ToString());
 
         //if(distanceToPlayer <= maxDistanceToAttack){
-        if(!isMoving){
+        if(!isMoving && enemyHealth.health > 0.0f){
             if(fireTimer > 0.0f)
                 fireTimer -= Time.deltaTime;
             else

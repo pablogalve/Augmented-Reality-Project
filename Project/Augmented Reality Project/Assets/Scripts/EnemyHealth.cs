@@ -21,7 +21,7 @@ public class EnemyHealth : MonoBehaviour
         GameObject theGameManager = GameObject.Find("GameManager");
         gameManagerScript = theGameManager.GetComponent<GameManager>();
 
-        explosionTime = 2.0f;
+        explosionTime = 1.0f;
 
         audioDeath = GameObject.Find("AudioEnemyDeath").GetComponent<AudioSource>();
         audioImpact = GameObject.Find("AudioEnemyImpact").GetComponent<AudioSource>();

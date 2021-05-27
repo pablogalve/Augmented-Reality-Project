@@ -10,10 +10,8 @@ public class StartGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameObject theGameManager = GameObject.Find("GameManager");
-        GameManager gameManagerScript = theGameManager.GetComponent<GameManager>();
-        gameManagerScript.ResetGame();
-        SpawnPlayerShip();        
+        SpawnPlayerShip();
+        GameManager.isDead = false;
     }
 
     // Update is called once per frame
